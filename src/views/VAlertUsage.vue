@@ -13,6 +13,18 @@
         </option>
       </select>
     </div>
+    <div class="m-duration">
+      <label for="select-dur">duration (1 to 10)</label>
+      <input
+        class="m-duration-range"
+        type="range"
+        name="select-dur"
+        v-model="duration"
+        min="1"
+        max="10"
+        :data="duration"
+      />
+    </div>
     <div class="m-alert-list">
       <button
         class="m-alert-list__item"
@@ -31,7 +43,8 @@
 export default {
   name: "CustomAlertUsage",
   data: () => ({
-    selectedPosition: "Right Top",
+    selectedPosition: "right-top",
+    duration: 2,
     positions: [
       "right-top",
       "right-center",
@@ -72,7 +85,7 @@ export default {
         type: item.name,
         title: item.title,
         desc: item.desc,
-        duration: 2,
+        duration: this.duration,
         position: this.selectedPosition,
       });
     },
@@ -147,6 +160,20 @@ $info-dark: #3d66b8;
       border: 1px solid $grey;
       border-radius: 5px;
       @include font($mulish, $black, 16px);
+    }
+  }
+
+  .m-duration {
+    @include flex(column, center, center);
+    position: relative;
+    gap: 10px;
+    &-range {
+      width: 300px;
+      &::after {
+        position: absolute;
+        right: -20px;
+        content: attr(data);
+      }
     }
   }
 }
