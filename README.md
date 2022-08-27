@@ -1,5 +1,7 @@
 # valert-usage
 
+Shows usage examples ov @hakut/valert package
+
 ## Project setup
 ```
 npm install
